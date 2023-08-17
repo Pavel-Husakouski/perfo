@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "moduleResolution": "node",
+        "lib": ["es6"],
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "sourceMap": true,
+        "declaration": true,
+        "noEmitHelpers" : false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "importHelpers": true,
+        "stripInternal": true,
+        "outDir": "lib"
+    },
+    "files": [
+        "src/index.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "test"
+    ]
+}
