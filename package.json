@@ -4,7 +4,7 @@
   "description": "A starter repo and a simple performance testing library for Node.js",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "npm run compile && npm run test",
+    "build": "npm run compile",
     "compile": "tsc",
     "test": "mocha"
   },

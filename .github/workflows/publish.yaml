@@ -1,0 +1,26 @@
+name: Publish
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Test the app
+        run: npm run test
