@@ -27,7 +27,7 @@
     "tslib": "^2.6.1"
   },
   "files": [
-    "lib",
+    "lib/*",
     "LICENSE",
     "readme.md"
   ]
