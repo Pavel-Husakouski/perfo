@@ -1,8 +1,11 @@
 {
   "name": "perfo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A starter repo and a simple performance testing library for Node.js",
   "main": "./lib/index.js",
+  "repository": {
+    "url": "https://github.com/Pavel-Husakouski/perfo"
+  },
   "scripts": {
     "build": "npm run compile",
     "compile": "tsc",
@@ -22,5 +25,10 @@
     "mocha": "^10.2.0",
     "ts-node": "^10.4.0",
     "tslib": "^2.6.1"
-  }
+  },
+  "files": [
+    "lib",
+    "LICENSE",
+    "readme.md"
+  ]
 }
