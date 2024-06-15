@@ -1,6 +1,6 @@
 {
   "name": "perfo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A starter repo and a simple performance testing library for Node.js",
   "main": "./lib/index.js",
   "repository": {
