@@ -29,6 +29,17 @@ describe('a counter', () => {
         expect(c.read()).to.deep.equal({throughput: 0, rps: 0});
     });
 
+    it('write return counters', async () => {
+        const c = counter();
+
+        c.write(1000);
+        await delay(1000);
+        const writeResult = c.write(1000);
+        const readResult = c.read();
+
+        expect(writeResult).to.deep.equal(readResult);
+    });
+
     it('multiple calls with delay less that a second', async function () {
         this.timeout(10000);
 
@@ -47,7 +58,7 @@ describe('a counter', () => {
         const duration = end - start;
 
         console.log('duration', duration);
-        console.log(4000 / duration, 4 / (duration / 1000));
+        console.log(4000 / (duration/ 1000), 4 / (duration / 1000));
 
         const { throughput, rps } = c.read();
 
@@ -75,7 +86,7 @@ describe('a counter', () => {
         const duration = end - start;
 
         console.log('duration', duration);
-        console.log(4000 / duration, 4 / (duration / 1000));
+        console.log(4000 / (duration/ 1000), 4 / (duration / 1000));
 
         const { throughput, rps } = c.read();
 
@@ -103,7 +114,7 @@ describe('a counter', () => {
         const duration = end - start;
 
         console.log('duration', duration);
-        console.log(4000 / duration, 4 / (duration / 1000));
+        console.log(4000 / (duration/ 1000), 4 / (duration / 1000));
 
         const { throughput, rps } = c.read();
 

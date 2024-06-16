@@ -9,13 +9,14 @@ export function counter(period = 10000) {
   return { read, write, reset };
 
   function read() {
-    const now = Date.now();
-    queue = queue.filter(({ time }) => now - time < period); // a linked list would be better for sure, but this is just a demo
-
     if (queue.length === 0) return { throughput: 0, rps: 0 };
 
-    const start = queue[0]?.time ?? now;
-    const end = queue.slice(-1)[0]?.time ?? now;
+    if(queue.length === 1) {
+      return {throughput: Infinity, rps: Infinity };
+    }
+
+    const start = queue[0].time;
+    const end = queue.slice(-1)[0].time;
     const totalThroughput = queue.reduce((acc, { size }) => acc + size, 0);
     const duration = end - start;
 
@@ -25,15 +26,18 @@ export function counter(period = 10000) {
     };
   }
 
+  function trim() {
+    const now = Date.now();
+
+    queue = queue.filter(({ time }) => now - time < period); // an optimization is required to cut off the tail of the queue
+  }
+
   function write(size: number) {
     queue.push({ size, time: Date.now() });
 
-    const first = queue[0];
-    const last = queue.slice(-1)[0];
+    trim();
 
-    if (last.time - first.time > period) {
-      queue.shift();
-    }
+    return read();
   }
 
   function reset() {
