@@ -1,4 +1,4 @@
-import { createQueue } from './queue';
+import { createQueue } from './array-queue';
 
 export function counter(period = 10000) {
   let queue = createQueue(period);
