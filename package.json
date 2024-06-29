@@ -9,7 +9,8 @@
   "scripts": {
     "build": "npm run compile",
     "compile": "tsc",
-    "test": "mocha"
+    "test": "mocha",
+    "test:infinite": "ts-node ./test/infinite.ts"
   },
   "keywords": [],
   "author": "Pauel <phusakouski@gmail.com>",

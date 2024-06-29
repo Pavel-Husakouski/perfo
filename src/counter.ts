@@ -1,4 +1,4 @@
-import { createQueue } from './array-queue';
+import { createQueue } from './ring-buffer-queue';
 
 export function counter(period = 10000) {
   let queue = createQueue(period);
@@ -14,10 +14,10 @@ export function counter(period = 10000) {
       return {throughput: Infinity, rps: Infinity };
     }
 
-    const start = queue.first().time;
-    const end = queue.last().time;
+    const first = queue.head().time;
+    const last = queue.tail().time;
     const totalThroughput = queue.reduce((acc, { size }) => acc + size, 0);
-    const duration = end - start;
+    const duration = first - last;
 
     return {
       throughput: totalThroughput / (duration / 1000),

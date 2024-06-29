@@ -10,12 +10,12 @@ export function createQueue(period: number): Queue {
         trim(queue, period);
     }
 
-    function first() {
-        return queue.at(0);
+    function head() {
+        return queue.at(-1);
     }
 
-    function last() {
-        return queue.at(-1);
+    function tail() {
+        return queue.at(0);
     }
 
     function length() {
@@ -24,17 +24,17 @@ export function createQueue(period: number): Queue {
 
     return {
         add,
-        first,
-        last,
+        head,
+        tail,
         length,
         reduce: queue.reduce.bind(queue)
-    }
+    };
 }
 
 function trim(timeSeries: Chunk[], threshold: number) {
     const position = findPositionFromStart(timeSeries, threshold);
 
-    if(position === 0) {
+    if (position === 0) {
         return timeSeries;
     }
 
@@ -42,12 +42,12 @@ function trim(timeSeries: Chunk[], threshold: number) {
 }
 
 function findPositionFromStart(timeSeries: Chunk[], threshold: number) {
-    if(timeSeries.length < 2) {
+    if (timeSeries.length < 2) {
         return 0;
     }
 
     const start = timeSeries.at(-1);
-    const endTime = start.time-threshold;
+    const endTime = start.time - threshold;
     let left = 0;
     let right = timeSeries.length - 2;
     let result = -1;

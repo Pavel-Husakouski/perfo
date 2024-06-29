@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { createQueue } from '../lib/ring-buffer-queue';
 
-describe('ring buffer', () => {
+describe('queue', () => {
     it('create', () => {
         const queue = createQueue(10, 10);
 
