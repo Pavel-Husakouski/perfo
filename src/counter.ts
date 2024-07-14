@@ -14,9 +14,9 @@ export function counter(period = 10000) {
       return {throughput: Infinity, rps: Infinity };
     }
 
+    const totalThroughput = queue.reduce((acc, { size }) => acc + size, 0);
     const first = queue.head().time;
     const last = queue.tail().time;
-    const totalThroughput = queue.reduce((acc, { size }) => acc + size, 0);
     const duration = first - last;
 
     return {

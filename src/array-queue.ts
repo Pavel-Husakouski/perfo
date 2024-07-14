@@ -2,12 +2,10 @@ import { Chunk } from './chunk';
 import { Queue } from './queue';
 
 export function createQueue(period: number): Queue {
-    const queue: Chunk[] = [];
+    let queue: Chunk[] = [];
 
     function add(entry: Chunk) {
         queue.push(entry);
-
-        trim(queue, period);
     }
 
     function head() {
@@ -22,12 +20,18 @@ export function createQueue(period: number): Queue {
         return queue.length;
     }
 
+    function reduce<U>(fn: (acc: U, current: Chunk) => U, initial: U): U {
+        queue = trim(queue, period);
+
+        return queue.reduce(fn, initial);
+    }
+
     return {
         add,
         head,
         tail,
         length,
-        reduce: queue.reduce.bind(queue)
+        reduce
     };
 }
 
